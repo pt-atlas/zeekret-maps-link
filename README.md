@@ -16,6 +16,10 @@ Change the destination in Google Maps and the car follows within seconds. No sha
 > responsibility for anything that happens from using it. The % is an estimate: always keep an eye on the car's own
 > range.
 
+> 🔒 **A Zeekr owner's private project, on a private server. No personal data is collected** — no location, no
+> account, no driving data, no analytics. The only link is the car's pair code: the phone sends a locked box (km left, arrival time)
+> under that code, and the server can't open it. Old boxes are deleted after 24 h.
+
 ## The Zeekret apps
 
 | App | Runs on | What it does |
@@ -43,24 +47,94 @@ Zeekret Dash takes the car's **battery %** and **range**, and the km left from G
 - **Orange** below 20 %, **red** below 5 %. If you won't make it, it shows **0 %** in red.
 - With stops added in Google Maps, the % is for your **final destination**.
 
-## Install
+## Install and set up
 
-> ⚠️ Zeekret Maps Link reads Google Maps' navigation notification, so it needs **notification access**. Android
-> treats that as a *restricted setting* for apps installed outside the Play Store, and **Google Play Protect may
-> block** installing it. That's why setup takes a few more steps than a normal app.
+**⬇ Download:** [latest release](https://github.com/pt-atlas/zeekret-maps-link/releases/latest) →
+`ZeekretMapsLink-1.1.apk`.
 
-1. **Install the APK** on your phone. If tapping it fails ("App not installed") or Play Protect blocks it, install it
-   from a computer over USB: `adb install ZeekretMapsLink.apk`.
-2. **Allow the restricted setting** (only if notification access is greyed out in step 4):
-   - Most phones: **Settings ▸ Apps ▸ Zeekret Maps Link ▸ ⋮ (top right) ▸ Allow restricted settings**.
-   - Phones that hide that menu (e.g. Xiaomi / HyperOS): from a computer with USB debugging on, run
-     `adb shell appops set com.zeekret.mapslink ACCESS_RESTRICTED_SETTINGS allow`
-3. **Type the car's pair code:** in the car open **Zeekret Dash ▸ Map link** (the side menu) and read the 8-letter
-   pair code under **Link with the phone app** (like `ABCD-EFGH`). Type it into Zeekret Maps Link, with or without
-   the dash; it shows **✓ Valid**.
-4. Tap **Open notification access** and turn on **Zeekret Maps Link**.
-5. On Xiaomi and other phones that close background apps: **Settings ▸ Apps ▸ Zeekret Maps Link** ▸ Battery saver
-   **No restrictions**, and **Autostart** on.
+### Why setup needs a few extra steps
+
+Zeekret Maps Link has to read **Google Maps' navigation notification**, so it needs **notification access**.
+Android treats notification access as a **restricted setting** for apps that don't come from the Play Store: the
+switch is **greyed out** until you allow it. On some phones **Google Play Protect** also refuses to install such apps.
+The steps below get around both, safely, on your own phone.
+
+You need:
+- your Android phone and its USB cable;
+- **once**, a computer (Windows, Mac or Linux) — only for step 2 and 4;
+- the car's **pair code** from Zeekret Dash (step 5).
+
+### Step 1 — Turn on debug mode (USB debugging) on the phone
+
+1. **Settings ▸ About phone**, then tap **Build number** 7 times until it says *"You are now a developer"*.
+   - Xiaomi / Redmi / POCO: **Settings ▸ About phone ▸** tap **OS version** (or **MIUI version**) 7 times.
+   - Samsung: **Settings ▸ About phone ▸ Software information ▸** tap **Build number** 7 times.
+2. Go back to **Settings ▸ System ▸ Developer options** (Xiaomi: **Settings ▸ Additional settings ▸ Developer
+   options**) and turn on **USB debugging**.
+   - Xiaomi only: also turn on **Install via USB** (it may ask you to sign in to a Mi account).
+
+### Step 2 — Get the `adb` tool on the computer
+
+1. Download Google's **SDK Platform-Tools** for your computer:
+   [developer.android.com/tools/releases/platform-tools](https://developer.android.com/tools/releases/platform-tools).
+2. Unzip it. You get a folder called **platform-tools**.
+3. Put `ZeekretMapsLink-1.1.apk` **into that platform-tools folder**.
+4. Open a terminal **in that folder**:
+   - Windows: open the folder, click the address bar, type `cmd` and press Enter.
+   - Mac / Linux: open Terminal and type `cd ` (with a space), drag the folder in, press Enter.
+5. Plug the phone into the computer. On the phone, tap **Allow** on *"Allow USB debugging?"* (tick *Always allow
+   from this computer*).
+6. Check the phone is seen — type this and press Enter:
+
+   ```
+   adb devices
+   ```
+
+   You should see one line ending in **device**. If it says **unauthorized**, look at the phone and tap **Allow**.
+   (Mac / Linux: type `./adb` instead of `adb` in every command.)
+
+### Step 3 — Install the app
+
+```
+adb install -r ZeekretMapsLink-1.1.apk
+```
+
+It prints **Success**. (If you could install the APK by tapping it on the phone, you can skip this command.)
+
+### Step 4 — Allow the restricted setting
+
+```
+adb shell appops set com.zeekret.mapslink ACCESS_RESTRICTED_SETTINGS allow
+```
+
+It prints **nothing** when it worked. Type it exactly: the app name is `com.zeekret.mapslink` — **maps** with an
+**s**. *"No UID for …"* means a typo.
+
+> **No computer?** On many phones (not Xiaomi) you can do steps 3–4 on the phone instead: tap the APK to install it,
+> try step 6 once (the switch is greyed out), then go to **Settings ▸ Apps ▸ Zeekret Maps Link ▸ ⋮ (top right) ▸
+> Allow restricted settings**. If you don't see that menu, use the computer.
+
+You can unplug the phone now and turn **USB debugging** off again if you like. It's only needed once.
+
+### Step 5 — Type the car's pair code
+
+1. In the car, open **Zeekret Dash ▸ Map link** (side menu). Under **Link with the phone app** you see the pair
+   code, like `ABCD-EFGH`.
+2. Open **Zeekret Maps Link** on the phone and type that code (with or without the dash). It shows **✓ Valid**.
+
+### Step 6 — Allow notification access
+
+1. In Zeekret Maps Link tap **Open notification access**.
+   (Or: **Settings ▸ Apps ▸ Special app access ▸ Notification access**; on Xiaomi **Settings ▸ Notifications ▸
+   Notification access**, or search the settings for "notification access".)
+2. Find **Zeekret Maps Link** in the list and switch it **on**.
+3. Android warns that the app can read notifications: tap **Allow**. (It only ever reads Google Maps' navigation
+   notification, and only the distance and arrival time — see above.)
+4. Back in Zeekret Maps Link, both lines show **✓**: *Valid* and *Allowed*.
+
+### Step 7 — Keep it running (Xiaomi and phones that close background apps)
+
+**Settings ▸ Apps ▸ Zeekret Maps Link ▸ Battery saver ▸ No restrictions**, and turn **Autostart** on.
 
 ## Use it
 
@@ -80,7 +154,9 @@ head unit, drag the panel to move it and pinch to resize it; it hides in **P**.
 | Status stays **Waiting for Google Maps navigation** | Make sure Google Maps is really navigating (its notification with the next turn is showing). Turn notification access off and on again. Check battery saver / autostart (step 5). |
 | Status says **Sent** but the car shows nothing | Check the pair code matches the car's. The panel hides in P and while a camera picture is showing. |
 | **No connection** | The phone or the car has no internet. |
-| Notification access is greyed out | Step 2 above. |
+| Notification access is greyed out | Step 4 (the restricted setting) wasn't done, or had a typo. |
+| `adb` says **unauthorized** / **no devices** | Unlock the phone and tap **Allow** on the USB debugging message; try another cable or USB port. |
+| `adb` is "not recognized" | The terminal isn't open in the platform-tools folder (step 2.4). |
 
 ## Questions and problems
 
