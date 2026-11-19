@@ -8,6 +8,9 @@ car's head unit. Zeekret Dash then shows the **battery % you'll arrive with**, r
 
 Change the destination in Google Maps and the car follows within seconds. No sharing, no typing on every trip.
 
+**New in 1.2:** tap a charger in Zeekret Dash's **Nearby Charger** suggestions on the car, and it opens in Google Maps on
+your phone (and so on Android Auto), ready to navigate. Needs **Display over other apps** (step 7).
+
 > This repository holds **documentation only, no source code**. Zeekret Maps Link is closed-source.
 
 > 🚗 **Tested with the Zeekr 7X only (SEA region).** Any other car or region is entirely at your own risk.
@@ -52,7 +55,7 @@ Zeekret Dash takes the car's **battery %** and **range**, and the km left from G
 ## Install and set up
 
 **⬇ Download:** [latest release](https://github.com/pt-atlas/zeekret-maps-link/releases/latest) →
-`ZeekretMapsLink-1.1.apk`.
+`ZeekretMapsLink-1.2.apk`.
 
 ### Why setup needs a few extra steps
 
@@ -80,7 +83,7 @@ You need:
 1. Download Google's **SDK Platform-Tools** for your computer:
    [developer.android.com/tools/releases/platform-tools](https://developer.android.com/tools/releases/platform-tools).
 2. Unzip it. You get a folder called **platform-tools**.
-3. Put `ZeekretMapsLink-1.1.apk` **into that platform-tools folder**.
+3. Put `ZeekretMapsLink-1.2.apk` **into that platform-tools folder**.
 4. Open a terminal **in that folder**:
    - Windows: open the folder, click the address bar, type `cmd` and press Enter.
    - Mac / Linux: open Terminal and type `cd ` (with a space), drag the folder in, press Enter.
@@ -98,7 +101,7 @@ You need:
 ### Step 3 — Install the app
 
 ```
-adb install -r ZeekretMapsLink-1.1.apk
+adb install -r ZeekretMapsLink-1.2.apk
 ```
 
 It prints **Success**. (If you could install the APK by tapping it on the phone, you can skip this command.)
@@ -134,7 +137,13 @@ You can unplug the phone now and turn **USB debugging** off again if you like. I
    notification, and only the distance and arrival time — see above.)
 4. Back in Zeekret Maps Link, both lines show **✓**: *Valid* and *Allowed*.
 
-### Step 7 — Keep it running (Xiaomi and phones that close background apps)
+### Step 7 — Allow display over other apps (for chargers, 1.2+)
+
+In Zeekret Maps Link tap **Open display over other apps** and switch **Zeekret Maps Link** on. Android only lets an app
+open Google Maps from the background with this. The line shows **✓ Allowed**. It only checks for a tapped charger
+while Google Maps / Android Auto navigation is running.
+
+### Step 8 — Keep it running (Xiaomi and phones that close background apps)
 
 **Settings ▸ Apps ▸ Zeekret Maps Link ▸ Battery saver ▸ No restrictions**, and turn **Autostart** on.
 
@@ -144,6 +153,8 @@ You can unplug the phone now and turn **USB debugging** off again if you like. I
 2. Within about 15 seconds the car shows **🔋 xx% 🏁**. The app's status line says **Sent: xx.x km left**.
 3. Change the destination or add a stop: the car follows by itself.
 4. End navigation: the panel goes away.
+5. Tap a charger in the car's **Nearby Charger** suggestions: within a few seconds Google Maps on the phone opens it
+   (while navigation is running).
 
 On the car (Zeekret Dash ▸ **Map link**) you can also set **Home** (shown as **🔋 xx% 🏠** when you're away), pick
 a **saved place**, choose the battery size (75 or 100 kWh), and where the panel shows (head unit, HUD or both). On the
@@ -153,8 +164,9 @@ head unit, drag the panel to move it and pinch to resize it; it hides in **P**.
 
 | You see | Do this |
 |---|---|
-| Status stays **Waiting for Google Maps navigation** | Make sure Google Maps is really navigating (its notification with the next turn is showing). Turn notification access off and on again. Check battery saver / autostart (step 5). |
+| Status stays **Waiting for Google Maps navigation** | Make sure Google Maps is really navigating (its notification with the next turn is showing). Turn notification access off and on again. Check battery saver / autostart (step 8). |
 | Status says **Sent** but the car shows nothing | Check the pair code matches the car's. The panel hides in P and while a camera picture is showing. |
+| Tapping a charger in the car does nothing | Step 7 (display over other apps). Google Maps navigation must be running on the phone. Same pair code on both. |
 | **No connection** | The phone or the car has no internet. |
 | Notification access is greyed out | Step 4 (the restricted setting) wasn't done, or had a typo. |
 | `adb` says **unauthorized** / **no devices** | Unlock the phone and tap **Allow** on the USB debugging message; try another cable or USB port. |
