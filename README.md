@@ -30,6 +30,8 @@ Change the destination in Google Maps and the car follows within seconds. No sha
 
 You need **Zeekret Dash** in the car. Zeekret Maps Link on its own shows nothing.
 
+**🌐 All three apps on one page:** **[zeekret.pages.dev](https://zeekret.pages.dev/)**, in two parts: **📱 Phone apps** (Zeekret, Zeekret Maps Link; downloads from the latest GitHub release) and **🚗 Zeekr 7X side app** (Zeekret Dash, opened on the car's screen).
+
 ## What it sends, and what it doesn't
 
 - **Sent:** metres left on the route, the arrival time, and when it was sent. That's all.
