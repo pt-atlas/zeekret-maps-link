@@ -29,9 +29,10 @@ your phone (and so on Android Auto), ready to navigate. Needs **Display over oth
 |---|---|---|
 | **[Zeekret](https://github.com/pt-atlas/zeekret-updates)** | Phone + Wear OS watch | Bluetooth digital key, remote control, stats, widget |
 | **[Zeekret Dash](https://github.com/pt-atlas/zeekret-dash)** | Car head unit | Blindspot camera, mirror, dash cam, car controls, **battery at arrival** |
-| **Zeekret Maps Link** (this one) | Phone | Sends your live Google Maps route to Zeekret Dash |
+| **Zeekret Maps Link** (this one) | Phone | Sends your live Google Maps route to Zeekret Dash. Works without the Zeekret app; needs Zeekret Dash (pair code) |
 
-You need **Zeekret Dash** in the car. Zeekret Maps Link on its own shows nothing.
+**Works on its own: you don't need the Zeekret phone app.** You only need **Zeekret Dash** in the car, linked with its
+**pair code** (Zeekret Dash ▸ side menu ▸ **Map link**). Without Zeekret Dash, Zeekret Maps Link shows nothing.
 
 **🌐 All three apps on one page:** **[zeekret.pages.dev](https://zeekret.pages.dev/)**, in two parts: **📱 Phone apps** (Zeekret, Zeekret Maps Link; downloads from the latest GitHub release) and **🚗 Zeekr 7X side app** (Zeekret Dash, opened on the car's screen).
 
