@@ -53,6 +53,8 @@ Zeekret Dash takes the car's **battery %** and **range**, and the km left from G
 - **🪫 Orange** from 1 to 20 %. If you won't make it, it shows **🪫 0 %** in red.
 - On the car's HUD the arrival time is on top: **🏁 08:25** / **🔋 69% · 12 km**.
 - With stops added in Google Maps, the % is for your **final destination**.
+- **Traffic (1.4+):** Google Maps' coloured route bar (blue / orange / red) is sent too, so Zeekret Dash shows a small
+  traffic bar of the next 50 km on the HUD. Needs Android 16 on the phone. Only lengths and colours, no location.
 
 ## Install and set up
 
