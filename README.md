@@ -50,7 +50,8 @@ Zeekret Dash takes the car's **battery %** and **range**, and the km left from G
 
 - With the car's **average consumption** (from the Zeekret phone app): battery % − km × kWh per 100 km ÷ battery size.
 - Without it: battery % × (range − km left) ÷ range.
-- **Orange** below 20 %, **red** below 5 %. If you won't make it, it shows **0 %** in red.
+- **🪫 Orange** from 1 to 20 %. If you won't make it, it shows **🪫 0 %** in red.
+- On the car's HUD the arrival time is on top: **🏁 08:25** / **🔋 69% · 12 km**.
 - With stops added in Google Maps, the % is for your **final destination**.
 
 ## Install and set up
