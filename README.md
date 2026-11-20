@@ -69,7 +69,7 @@ The steps below get around both, safely, on your own phone.
 You need:
 - your Android phone and its USB cable;
 - **once**, a computer (Windows, Mac or Linux) — only for step 2 and 4;
-- the car's **pair code** from Zeekret Dash (step 5).
+- the car's **QR / pair code** from Zeekret Dash (step 5).
 
 ### Step 1 — Turn on debug mode (USB debugging) on the phone
 
@@ -123,11 +123,13 @@ It prints **nothing** when it worked. Type it exactly: the app name is `com.zeek
 
 You can unplug the phone now and turn **USB debugging** off again if you like. It's only needed once.
 
-### Step 5 — Type the car's pair code
+### Step 5 — Link to the car (scan its QR)
 
 1. In the car, open **Zeekret Dash ▸ Map link** (side menu). Under **Link with the phone app** you see the pair
-   code, like `ABCD-EFGH`.
-2. Open **Zeekret Maps Link** on the phone and type that code (with or without the dash). It shows **✓ Valid**.
+   code, like `ABCD-EFGH`, and a QR (Zeekret Dash 1.25 or newer).
+2. Open **Zeekret Maps Link** on the phone, tap **Scan car code** and point the phone at the QR. It shows **✓ Valid**.
+   No QR? Type the code instead (with or without the dash).
+3. **Unlink** (in Maps Link) forgets the car; scan again to link.
 
 ### Step 6 — Allow notification access
 
